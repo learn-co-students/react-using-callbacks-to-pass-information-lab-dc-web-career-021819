@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export default class ColorSelector extends Component {
-  
-  makeColorSwatches = () => (
+  makeColorSwatches = () =>
     ["#F00", "#F80", "#FF0", "#0F0", "#00F", "#508", "#90D", "#FFF", "#000"].map((str, idx) => {
-      return <div key={idx} className="color-swatch" style={{backgroundColor: str}}/>
-    })
-  )
-  
+      return <div key={idx} onClick={this.handleClick} className="color-swatch" style={{ backgroundColor: str }} />;
+    });
+
+  handleClick = e => {
+    const target = e.target;
+    const color = target.style.backgroundColor;
+    console.log(color);
+    this.props.cb(color);
+  };
+
   render() {
-    return (
-      <div id="colorSelector">
-        {this.makeColorSwatches()}
-      </div>
-    )
+    return <div id="colorSelector">{this.makeColorSwatches()}</div>;
   }
-  
 }
